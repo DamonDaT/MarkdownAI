@@ -34,6 +34,8 @@
   * OPT-6.7B 以 float16 精度加载到 GPU 需要使用大约 13.5GB 显存
   * 如果使用 int8 精度，则只需要大约 7GB 显存
 
+***
+
 
 
 #### 【1.2】预训练模型
@@ -77,3 +79,38 @@
 
 
 
+### 【三】典型 LLM 差异
+
+***
+
+> 需掌握，对各种模型架构和方法细节有个大概的了解，系统性的读下 LLM综述 论文
+
+> 论文（LLM 综述）：[A Survey of Large Language Models](https://arxiv.org/pdf/2303.18223)
+
+
+
+#### 【3.1】方法细节
+
+***
+
+<img src="./images/Concepts/02.jpg">
+
+***
+
+
+
+#### 【3.2】网络架构
+
+***
+
+<img src="./images/Concepts/03.jpg">
+
+***
+
+
+
+#### 【3.3】训练超参
+
+***
+
+<img src="./images/Concepts/04.jpg">

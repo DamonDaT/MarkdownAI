@@ -1,4 +1,4 @@
-### 【一】模型介绍
+### 【零】模型介绍
 
 ***
 
@@ -6,51 +6,53 @@
 
 > 揭露了一个很重要的事实：基于公开的数据集，使用较小的参数规模（7B，13B，34B，70B）就能预训练出接近 GPT-3.5 性能的模型
 
-<img src="./images/LLaMA/00.jpg"> 
+<img src="./images/LLaMA/00.jpg">
 
 ***
 
 
 
-### 【二】LLaMA-1
+
+
+### 【一】LLaMA-1
 
 ***
 
-> Meta 在 2023年3月 开源的大模型，**LLaMA-1**
+> Meta 在 2023 年 3 月 开源的大模型，**LLaMA-1**，非常的哇塞
 
 
 
-#### 【2.1】基座模型
+#### 【1.1】基座模型
 
 ***
 
 > 基本的超参数如下
 
-<img src="./images/LLaMA/09.jpg"> 
+<img src="./images/LLaMA/09.jpg">
 
-> LLM 的基座大模型一般都分为几个，基本架构相同，参数量不同，1 - 1.4 万亿的 token 非常夸张
+> LLM 的基座大模型一般都分为几个，基本架构相同，参数量不同，1.0 - 1.4 万亿的 token 非常夸张
 
-<img src="./images/LLaMA/01.jpg"> 
+<img src="./images/LLaMA/01.jpg">
 
 > 训练过程 Loss 的变化是 LLM 中一个很大的难题，稳定的训练要求 batch size 很大
 
-<img src="./images/LLaMA/02.jpg"> 
+<img src="./images/LLaMA/02.jpg">
 
 ***
 
 
 
-#### 【2.2】训练数据集
+#### 【1.2】训练数据集
 
 ***
 
 > 7 个不同来源的数据集
 
-<img src="./images/LLaMA/03.jpg"> 
+<img src="./images/LLaMA/03.jpg">
 
 > 了解下这些数据集，高质量的数据对于 LLM 来说非常重要
 
-**English CommonCrawl (67%)**：通过 CCNet 管道处理 2017至2020 年间的五个 CommonCrawl 数据集，进行行级去重，使用 fastText 线性分类器进行语言识以剔除非英语页面，并利用 ngram 语言模型过滤低质量内容，同时训练线性模型筛选维基百科引用页面.
+**English CommonCrawl (67%)**：通过 CCNet 管道处理 2017 至 2020 年间的五个 CommonCrawl 数据集，进行行级去重，使用 fastText 线性分类器进行语言识别以剔除非英语页面，并利用 ngram 语言模型过滤低质量内容，同时训练线性模型筛选维基百科引用页面.
 
 **C4 (15%)**：包括经过预处理的多样化 CommonCrawl 数据集，通过去重和语言识别改善性能，C4 数据集的质量过滤主要基于 标点存在与否 以及 网页的单词和句子数量 等启发式规则.
 
@@ -68,63 +70,57 @@
 
 
 
-#### 【2.3】模型架构改进
+#### 【1.3】模型架构改进
 
 ***
 
+> 主要有三点改进：RMSNorm 预归一化，SwiGLU 激活函数，RoPE 旋转嵌入
+
+<img src="./images/LLaMA/08.jpg">
 
 
-##### 【2.3.1】RMSNorm 预归一化
+
+##### 【1.3.1】RMSNorm 预归一化
 
 ***
 
 > 来源于 GPT-3：在Transformer 各层的输入进行归一化，以提高训练稳定性.
 
-<img src="./images/LLaMA/04.jpg">  
+<img src="./images/LLaMA/04.jpg">
 
 ***
 
 
 
-##### 【2.3.2】SwiGLU 激活函数
+##### 【1.3.2】SwiGLU 激活函数
 
 ***
 
 > 来源于 PaLM：用 SwiGLU 激活函数替换了 ReLU 非线性函数，以提升Transformer 性能.
 
-<img src="./images/LLaMA/05.jpg">  
+<img src="./images/LLaMA/05.jpg">
 
 > 主流激活函数对比
 
-<img src="./images/LLaMA/06.jpg"> 
+<img src="./images/LLaMA/06.jpg">
 
 ***
 
 
 
-##### 【2.3.3】RoPE 旋转嵌入
+##### 【1.3.3】RoPE 旋转嵌入
 
 ***
 
-> 来源于 GPT-Neo：移除了绝对位置嵌入，改为在网络的每一层添加旋转位置嵌入.
+> 来源于 GPT-Neo：移除了绝对位置嵌入，改为在网络的每一层添加旋转位置嵌入
 
-<img src="./images/LLaMA/07.jpg">  
-
-***
-
-
-
-##### 【2.3.4】综上三点的示图
+<img src="./images/LLaMA/07.jpg">
 
 ***
 
-> 按照前面选定的策略，最后一步就是确定一下训练语料中多大比例的文本参与这种 MASK 策略：15% MASK 比例 + Span 为 3
-
-<img src="./images/LLaMA/08.jpg">  
 
 
-
-#### 【2.4】LLaMA-1 预训练效率优化
+#### 【1.4】LLaMA-1 预训练效率优化
 
 ***
 
@@ -132,7 +128,7 @@
 
 
 
-##### 【2.4.1】因果多头注意力
+##### 【1.4.1】因果多头注意力
 
 ***
 
@@ -144,7 +140,7 @@
 
 
 
-##### 【2.4.2】减少重复激活计算
+##### 【1.4.2】减少重复激活计算
 
 ***
 
@@ -156,7 +152,7 @@
 
 
 
-##### 【2.4.3】模型并行 / 流水线并行
+##### 【1.4.3】模型并行 / 流水线并行
 
 ***
 
@@ -166,29 +162,29 @@
 
 
 
-### 【三】LLaMA 生态
+
+
+### 【二】LLaMA 生态
 
 ***
 
-> LLaMA 开源后整个生态开始迅速发展，Alpaca 和 Vicuna 作为衍生模型尤为突出
+> LLaMA 开源后整个生态开始迅速发展，**Alpaca** 和 **Vicuna** 作为衍生模型尤为突出
 
 
 
-<img src="./images/LLaMA/10.jpg"> 
-
-
+<img src="./images/LLaMA/10.jpg">
 
 ***
 
 
 
-#### 【3.1】Stanford Alpaca 7B
+#### 【2.1】Stanford Alpaca 7B
 
 ***
 
 > 来自斯坦福大学，基于合成数据（使用 textdavinci-003 生成）进行指令微调，随后这种造数据的方式火起来了
 
-<img src="./images/LLaMA/11.jpg"> 
+<img src="./images/LLaMA/11.jpg">
 
 **初衷**：像 GPT-3.5（text-davinci-003）、ChatGPT、Claude 和 Bing Chat 这样的 **指令跟随（Instruction-following ）**模型变得越来越强大. 现在许多用户经常与这些模互动，甚至将它们用于工作. 然而，尽管广泛部署，指令跟随模型仍然存在许多不足之处：它们可能生成虚假信息、传播社会刻板印象并产生有毒语言.
 
@@ -198,13 +194,13 @@
 
 
 
-#### 【3.2】Vicuna 13B
+#### 【2.2】Vicuna 13B
 
 ***
 
 > 来自多家研究机构（UC Berkeley，CMU，斯坦福，US San Dego 和 MBZUAI），基于对话数据
 
-<img src="./images/LLaMA/12.jpg"> 
+<img src="./images/LLaMA/12.jpg">
 
 **Vicuna** 是在 LLaMa 1-13B 的基础上使用监督数据微调得到的模型，数据集来自于 **ShareGPT** 产生的 70K 条用户对话数据，增强了 Alpaca 提供的训练脚本，以更好地处理多轮对话和长序列. 相较于Alpaca，Vicuna 在训练中将序列长度由 512 扩展到了 **2048**，并且通过 梯度检测 和 **flash attention** 来解决显存问题；针对多轮对话来调整训练损失，并仅根据模型的输出进行微调. 通过 **GPT4** 来打分评测，Vicuna 可以达到 **ChatGPT 90%** 的效果.
 
@@ -212,7 +208,9 @@
 
 
 
-### 【四】LLaMA-2
+
+
+### 【三】LLaMA-2
 
 ***
 
@@ -220,29 +218,33 @@
 
 
 
-#### 【4.1】与 LLaMA 1 对比
+#### 【3.1】与 LLaMA 1 对比
+
+***
 
 > 长文本，更多的训练数据（2 万亿 token）
 
-<img src="./images/LLaMA/13.jpg">  
+<img src="./images/LLaMA/13.jpg">
 
 ***
 
 
 
-#### 【4.2】LLaMA 2 - Chat 训练方法
+#### 【3.2】LLaMA 2 - Chat 训练方法
 
 ***
 
 > 在 **100** **万人类标记数据** 上进行 **RLHF** 训练得到 **LLaMA 2-Chat** 模型
 
-<img src="./images/LLaMA/14.jpg"> 
+<img src="./images/LLaMA/14.jpg">
 
 ***
 
 
 
-#### 【4.3】CodeLlama
+#### 【3.3】CodeLlama
 
 ***
+
+
 
