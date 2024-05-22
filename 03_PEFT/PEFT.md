@@ -26,7 +26,7 @@
 
 ***
 
-<img src="./images/01_Adapter_Tuning/01.jpg"> 
+<img src="./images/01_Adapter_Tuning/01.jpg">
 
 ***
 
@@ -36,7 +36,7 @@
 
 ***
 
-<img src="./images/01_Adapter_Tuning/02.jpg" width="50%"> 
+<img src="./images/01_Adapter_Tuning/02.jpg" width="50%">
 
 ***
 
@@ -58,7 +58,7 @@
 
 ***
 
-<img src="./images/02_Prefix_Tuning/01.jpg" width="65%"> 
+<img src="./images/02_Prefix_Tuning/01.jpg" width="65%">
 
 ***
 
@@ -78,7 +78,7 @@
 
 ***
 
- <img src="./images/02_Prefix_Tuning/03.jpg">
+<img src="./images/02_Prefix_Tuning/03.jpg">
 
 ***
 
@@ -102,7 +102,7 @@
 
 
 
-<img src="./images/03_Prompt_Tuning/01.jpg">  
+<img src="./images/03_Prompt_Tuning/01.jpg">
 
 ***
 
@@ -114,7 +114,7 @@
 
 > 一个很有意思的发现：当模型规模足够大时，各种超参数对于模型性能而言就失效了
 
-<img src="./images/03_Prompt_Tuning/02.jpg"> 
+<img src="./images/03_Prompt_Tuning/02.jpg">
 
 * (a) **Prompt 长度**：在大模型上，Prompt 长度为 1 也能达到不错的效果，Prompt 长度为 20 性价比最高。
 
