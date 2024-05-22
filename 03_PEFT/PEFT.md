@@ -48,7 +48,7 @@
 
 ***
 
-> 2021年，来自 Lisa 和 Liang（Stanford），冻结预训练模型参数，在 Embedding 和 Transformer 层添加 经过 MLP 训练的特定任务前缀
+> 2021年，Lisa 和 Liang（Stanford），冻结预训练模型参数，在 Embedding 和 Transformer 层添加经过 MLP 训练的特定任务前缀
 
 > 论文：[Prefix-Tuning: Optimizing Continuous Prompts for Generation](https://arxiv.org/pdf/2101.00190)
 
@@ -187,4 +187,6 @@
 <img src="./images/04_P_Tuning/02.jpg"> 
 
 ***
+
+
 
