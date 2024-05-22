@@ -30,11 +30,11 @@
 
 > GLM 通过增加二维位置编码并允许以任意顺序预测跨度来改进空白填充预训练，这在 NLU 任务中实现了超越 BERT 和 T5 的性能提升。
 
-> 与此同时，GLM 可以通过变化空白的数量和长度来预训练不同类型的任务。在跨 NLU、有条件和无条件生成的广泛任务中，GLM 在相同模型大小和数据条件下优于BERT、T5 和 GPT。
+> 与此同时，GLM 可以通过变化空白的数量和长度来预训练不同类型的任务。在跨 NLU、有条件和无条件生成的广泛任务中，GLM 在相同模型大小和数据条件下优于 BERT、T5 和 GPT。
 
 
 
-<img src="./images/GLM/02.jpg"> 
+<img src="./images/GLM/02.jpg">
 
  
 
@@ -45,7 +45,7 @@
 
 
 
-<img src="./images/GLM/03.jpg"> 
+<img src="./images/GLM/03.jpg">
 
 
 
@@ -62,7 +62,7 @@
 
 ***
 
-<img src="./images/GLM/04.jpg"> 
+<img src="./images/GLM/04.jpg">
 
 ***
 
