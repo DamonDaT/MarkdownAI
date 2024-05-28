@@ -1,4 +1,4 @@
-### 【零】模型介绍
+### 【LLaMA】
 
 ***
 
@@ -74,7 +74,7 @@
 
 ***
 
-> 主要有三点改进：RMSNorm 预归一化，SwiGLU 激活函数，RoPE 旋转嵌入
+> 主要有三点改进：**RMSNorm** 预归一化，**SwiGLU** 激活函数，**RoPE** 旋转嵌入
 
 <img src="./images/LLaMA/08.jpg">
 
@@ -164,7 +164,55 @@
 
 
 
-### 【二】LLaMA 生态
+### 【二】LLaMA-2
+
+***
+
+> Meta 在 LLaMA 1 发布后，时隔半年推出第二代 LLaMA，大名鼎鼎的 **LLaMA-2**，又掀起了开源浪潮
+
+
+
+#### 【2.1】与 LLaMA 1 对比
+
+***
+
+> 长文本，更多的训练数据（2 万亿 token）
+
+<img src="./images/LLaMA/13.jpg">
+
+***
+
+
+
+#### 【2.2】LLaMA 2 - Chat 训练方法
+
+***
+
+> 在 **100** **万人类标记数据** 上进行 **RLHF** 训练得到 **LLaMA 2-Chat** 模型
+
+<img src="./images/LLaMA/14.jpg">
+
+***
+
+
+
+#### 【2.3】CodeLlama
+
+***
+
+
+
+
+
+### 【三】LLaMA-3
+
+***
+
+
+
+
+
+### 【番外篇】LLaMA 生态
 
 ***
 
@@ -178,7 +226,7 @@
 
 
 
-#### 【2.1】Stanford Alpaca 7B
+#### 【番外1】Stanford Alpaca 7B
 
 ***
 
@@ -188,13 +236,13 @@
 
 **初衷**：像 GPT-3.5（text-davinci-003）、ChatGPT、Claude 和 Bing Chat 这样的 **指令跟随（Instruction-following ）**模型变得越来越强大。现在许多用户经常与这些模互动，甚至将它们用于工作。然而，尽管广泛部署，指令跟随模型仍然存在许多不足之处：它们可能生成虚假信息、传播社会刻板印象并产生有毒语言。
 
-**Alpaca** 是一个指令跟随语言模型，从 **Meta‘s LLaMA 7B** 模型微调而来。使用以 textdavinci-003 风格自我指导（selfinstruct）生成的 52K 个指令跟随演示来训练 Alpaca 模型。在自我指导评估数据集上，Alpaca 表现出许多类似于 OpenAI text-davinci-003 的行为，并且惊人地小巧、易于复制和廉价（不到600美金）。
+**Alpaca** 是一个指令跟随语言模型，从 **Meta‘s LLaMA 7B** 模型微调而来。使用以 textdavinci-003 风格自我指导（self-instruct）生成的 52K 个指令跟随演示来训练 Alpaca 模型。在自我指导评估数据集上，Alpaca 表现出许多类似于 OpenAI text-davinci-003 的行为，并且惊人地小巧、易于复制和廉价（不到600美金）。
 
 ***
 
 
 
-#### 【2.2】Vicuna 13B
+#### 【番外2】Vicuna 13B
 
 ***
 
@@ -202,47 +250,7 @@
 
 <img src="./images/LLaMA/12.jpg">
 
-**Vicuna** 是在 LLaMa 1-13B 的基础上使用监督数据微调得到的模型，数据集来自于 **ShareGPT** 产生的 70K 条用户对话数据，增强了 Alpaca 提供的训练脚本，以更好地处理多轮对话和长序列。相较于Alpaca，Vicuna 在训练中将序列长度由 512 扩展到了 **2048**，并且通过 梯度检测 和 **flash attention** 来解决显存问题；针对多轮对话来调整训练损失，并仅根据模型的输出进行微调。通过 **GPT4** 来打分评测，Vicuna 可以达到 **ChatGPT 90%** 的效果。
-
-***
-
-
-
-
-
-### 【三】LLaMA-2
-
-***
-
-> Meta 在 LLaMA 1 发布后，时隔半年推出第二代 LLaMA，大名鼎鼎的 **LLaMA-2**
-
-
-
-#### 【3.1】与 LLaMA 1 对比
-
-***
-
-> 长文本，更多的训练数据（2 万亿 token）
-
-<img src="./images/LLaMA/13.jpg">
-
-***
-
-
-
-#### 【3.2】LLaMA 2 - Chat 训练方法
-
-***
-
-> 在 **100** **万人类标记数据** 上进行 **RLHF** 训练得到 **LLaMA 2-Chat** 模型
-
-<img src="./images/LLaMA/14.jpg">
-
-***
-
-
-
-#### 【3.3】CodeLlama
+**Vicuna** 是在 LLaMa 1-13B 的基础上使用监督数据微调得到的模型，数据集来自于 **ShareGPT** 产生的 70K 条用户对话数据，增强了 Alpaca 提供的训练脚本，以更好地处理多轮对话和长序列。相较于Alpaca，Vicuna 在训练中将序列长度由 512 扩展到了 2048，并且通过 梯度检测 和 **flash attention** 来解决显存问题；针对多轮对话来调整训练损失，并仅根据模型的输出进行微调。通过 **GPT4** 来打分评测，Vicuna 可以达到 **ChatGPT 90%** 的效果。
 
 ***
 

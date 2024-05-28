@@ -55,12 +55,16 @@
 > **数据集**：以下列出几个可以直接使用的指令微调数据集
 
 * [alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca)：
-  * 通过 self-instruct 框架，使用 OpenAI 的 text-davinci-003 模型（已下线）生成的包含 52,000 条指令和文本的数据集。用于对语言模型进行指令微调 （Instruction Tuning），使大语言模型更好地响应 Prompt。
+  
+  通过 self-instruct 框架，使用 OpenAI 的 text-davinci-003 模型（已下线）生成的包含 52,000 条指令和文本的数据集。用于对语言模型进行指令微调 （Instruction Tuning），使大语言模型更好地响应 Prompt。
 * [databricks-dolly-15k](https://huggingface.co/datasets/databricks/databricks-dolly-15k)：
-  * 数千名 Databricks 员工按照 InstructGPT 论文中概述的类别生成的 Instruction 数据。这些行为类别包括头脑风暴、分类、封闭型问答、生成、信息提取、开放型问答和摘要。协议非常友好，CC BY-SA 3.0 license，可用于任何目的，无论是学术还是商业。
-  * OpenAI InstructGPT 数据比例：文本内容生成（45.6%），开放式问答（12.4%），头脑风暴（11.2%），聊天（8.4%），文本改写（6.6%），内容摘要（4.2%），封闭式问答（2.6%），文本内容分类（3.5%），其他类型（3.5%），关键词提取（1.9%）
+  
+  数千名 Databricks 员工按照 InstructGPT 论文中概述的类别生成的 Instruction 数据。这些行为类别包括头脑风暴、分类、封闭型问答、生成、信息提取、开放型问答和摘要。协议非常友好，CC BY-SA 3.0 license，可用于任何目的，无论是学术还是商业。
+  
+  OpenAI InstructGPT 数据比例：文本内容生成（45.6%），开放式问答（12.4%），头脑风暴（11.2%），聊天（8.4%），文本改写（6.6%），内容摘要（4.2%），封闭式问答（2.6%），文本内容分类（3.5%），其他类型（3.5%），关键词提取（1.9%）
 * [oasst2](https://huggingface.co/datasets/OpenAssistant/oasst2)：
-  * OpenAssistant 是 LAION （非营利性组织，因 Stable-Diffusion 数据集出名）发布的一个基于聊天的助手，它能理解任务、与第三方系统进行交互，并动态地检索信息来完成任务。OpenAssistant/oasst2 数据集的发布旨在让每个人都能建设和使用强大的 chat-based 的大语言模型，一共收集了来自超过13,000名人类的真实聊天数据，包含信息树和标签。
+  
+  OpenAssistant 是 LAION （非营利性组织，因 Stable-Diffusion 数据集出名）发布的一个基于聊天的助手，它能理解任务、与第三方系统进行交互，并动态地检索信息来完成任务。OpenAssistant/oasst2 数据集的发布旨在让每个人都能建设和使用强大的 chat-based 的大语言模型，一共收集了来自超过13,000名人类的真实聊天数据，包含信息树和标签。
 
 ***
 
@@ -137,9 +141,12 @@
 > 近端策略优化 PPO（Proximal Policy Optimization）
 
 * 流程步骤：
-  * 将提示 x 输入初始 LM（绿色，Initial LM） 和当前微调的 LM（灰色，Tuned LM），分别得到了输出文本 y1, y2；
-  * 将来自当前策略的文本（y2）传递给 RM 得到一个标量的奖励 rθ，rθ 参与计算梯度；
-  * 将两个模型的生成文本进行比较计算差异的惩罚项 KL 散度。（这一项被用于惩罚 RL 策略在每个训练批次中生成大幅偏离初始模型，以确保模型输出合理连贯的文本，如果去掉这一惩罚项可能导致模型在优化中生成乱码文本来愚弄奖励模型提供高奖励值）
+  
+  将提示 x 输入初始 LM（绿色，**Initial LM**） 和当前微调的 LM（灰色，**Tuned LM**），分别得到了输出文本 y1, y2；
+  
+  将来自当前策略的文本（y2）传递给 RM 得到一个标量的 **奖励 rθ**，rθ 参与计算梯度；
+  
+  将两个模型的生成文本进行比较计算差异的惩罚项 **KL 散度**。（这一项被用于惩罚 RL 策略在每个训练批次中生成大幅偏离初始模型，以确保模型输出合理连贯的文本，如果去掉这一惩罚项可能导致模型在优化中生成乱码文本来愚弄奖励模型提供高奖励值）。
 
 <img src="./images/GPT/05.jpg">
 
