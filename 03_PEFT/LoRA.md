@@ -4,7 +4,7 @@
 
 > 前期主流的 PEFT 存在几个问题：
 
-> **Adapter**：增加了模型深度，从而增加了模型推理延时）
+> **Adapter**：增加了模型深度，从而增加了模型推理时延
 
 > **Prefix Tuning** / **Prompt Tuning** / **P-Tuning**：Prompt 训练难度大，同时缩短了模型可用的序列长度
 
