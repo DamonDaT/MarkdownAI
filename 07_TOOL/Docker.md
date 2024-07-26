@@ -143,13 +143,13 @@ docker info | grep 'Docker Root Dir'
 * 停止 docker
 
 ```shell
-sudo systemctl stop docker // sudo snap stop docker
+sudo systemctl stop docker
 ```
 
 * 备份现有容器信息，如果没有镜像的话可以不用备份，没试过这个命令
 
 ```shell
-cp -rp /var/snap/docker/common/var-lib-docker /var/snap/docker/common/var-lib-docker.backup
+cp -rp /var/lib/docker /var/lib/docker.backup
 ```
 
 * 创建新的 docker 根目录
@@ -161,19 +161,19 @@ mkdir /new/path/to/docker
 * 拷贝现有的 docker 数据到新目录下
 
 ```shell
-sudo rsync -aqxP /var/snap/docker/common/var-lib-docker/ /new/path/to/docker
+sudo rsync -aqxP /var/lib/docker /new/path/to/docker/
 ```
 
 * 修改守护进程文件的配置，将 data-root 的值改为 /new/path/to/docker
 
 ```shell
-vi /snap/docker/current/config/daemon.json
+vi /etc/docker/daemon.json
 ```
 
 * 启动 docker
 
 ```shell
-sudo systemctl start docker // sudo snap start docker
+sudo systemctl start docker
 ```
 
 ***
@@ -186,6 +186,40 @@ sudo systemctl start docker // sudo snap start docker
 
 ```shell
 docker commit [container_id] my.mirror.com/xxx/yyy:[new_version]
+```
+
+***
+
+
+
+##### 【4.3】配置代理
+
+***
+
+* 配置文件路径
+
+```shell
+sudo vi /lib/systemd/system/docker.service
+```
+
+* 在 [Service] 中添加如下两个 Environment 配置
+
+```shell
+Environment="HTTP_PROXY=http://127.0.0.1:7890/"
+Environment="HTTPS_PROXY=http://127.0.0.1:7890/"
+```
+
+* 重启 守护进程 和 docker 进程
+
+```shell
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+* 查看是否配置成功
+
+```shell
+docker info | grep HTTP
 ```
 
 ***
